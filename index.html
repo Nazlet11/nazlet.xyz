@@ -19,6 +19,18 @@
 
 <div id ="main"><a href="https://x.com/LIXOUA" >Twitter</a></div>
 
+<script>
+    document.addEventListener("mousemove", function(e) {
+        const target = document.getElementById("particles-js");
+        const amount = 20; // plus petit = plus subtil
+
+        const x = (e.clientX / window.innerWidth - 0.5) * amount;
+        const y = (e.clientY / window.innerHeight - 0.5) * amount;
+
+        target.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+    });
+</script>
+
 
 
 

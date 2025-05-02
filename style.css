@@ -12,7 +12,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://i.postimg.cc/MKMYHD5S/V3.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("images/bg2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -56,11 +56,12 @@ a:hover {
     color: #757575 !important;
 }
 
+
 #ytosu{
     font-family: 'Poppins', sans-serif ;
     position: absolute;
     top: 57%;
-    left: 57.5%;
+    left: 58.25%;
     transform: translate(-50%, -50%);
     font-size: 17px;
     font-weight: 100 ;
@@ -76,6 +77,20 @@ a:hover {
     font-size: 21px;
     font-weight: 100 ;
     color: #757575 ;
+}
+
+#emoji{
+    position: absolute;
+    top: 1.7%;
+    left: 0%;
+    padding-left: 5cm;
+    transform: translate(-50%, -50%);
+    font-size: 2px;
+    color: #757575 ;
+    z-index: 1001;
+    opacity: 0.8;
+    transform: rotate(8deg)
+
 }
 
 #barre {
@@ -110,8 +125,8 @@ a:hover {
     text-align: start;
     padding-left: 0.7cm;
 
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    z-index: 1002;
+    box-shadow: 0 2px 4px rgba(0,0,0,0);
 }
 
 #urlsite {
@@ -128,8 +143,8 @@ a:hover {
     text-align: start;
     padding-left: 0.7cm;
 
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    z-index: 1004;
+    box-shadow: 0 0px 2px rgba(0,0,0,0.4);
 }
 
 
@@ -173,4 +188,44 @@ a:hover {
     border-right: 10px solid transparent;
     border-bottom: 10px solid #333;
     transform: translateY(-50%);
+}
+
+.separator {
+    position: absolute;
+    top: 13px;
+    left: 220px;
+
+    width: 35px;
+    height: 2px;
+
+    background-color: #3a3a3a;
+    transform: rotate(90deg);
+    transform-origin: left top;
+
+    z-index: 1005;
+    opacity: 0.7;
+}
+
+.button {
+    transition-duration: 0.4s;
+    position: absolute;
+    top: 11px;
+    left: 233px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 2px solid #04AA6D;
+    background-color: white;
+    color: #04AA6D;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    z-index: 1005;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+    z-index: 1005;
 }

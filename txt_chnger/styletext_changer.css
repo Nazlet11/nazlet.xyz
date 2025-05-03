@@ -1,0 +1,176 @@
+*
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Gill Sans MT";
+    background-color: rgba(27, 27, 31, 0);
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+}
+
+a:hover {
+    color: #035712;  /*#00ffcc*/
+    text-decoration: none;
+}
+#main{
+    position: absolute;
+    top: 30%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    font-weight: 500 !important;
+    color: black;
+    z-index: 1000;
+}
+
+#sub{
+    font-family: 'Poppins', sans-serif !important;
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-weight: 100 !important;
+    color: #757575 !important;
+}
+
+
+
+#emoji{
+    position: absolute;
+    top: 1.7%;
+    left: 0%;
+    padding-left: 5cm;
+    transform: translate(-50%, -50%);
+    font-size: 2px;
+    color: #757575 ;
+    z-index: 1001;
+    opacity: 0.8;
+    transform: rotate(8deg)
+}
+
+#barre {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 29px;
+    line-height: 60px; /* verticalement centré */
+    text-align: start;
+    padding-left: 0.7cm;
+
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+#flch {
+    position: fixed;
+    top: 2px;
+    left: 73px;
+    width: 100%;
+    height: 60px;
+
+
+    color: white;
+    font-size: 28px;
+    line-height: 60px; /* verticalement centré */
+    text-align: start;
+    padding-left: 0.7cm;
+
+    z-index: 1002;
+    box-shadow: 0 2px 4px rgba(0,0,0,0);
+}
+
+#urlsite {
+    position: fixed;
+    top: 1px;
+    left: 88px;
+    width: 100%;
+    height: 60px;
+
+
+    color: white;
+    font-size: 19px;
+    line-height: 60px; /* verticalement centré */
+    text-align: start;
+    padding-left: 0.7cm;
+
+    z-index: 1004;
+    box-shadow: 0 0px 2px rgba(0,0,0,0.4);
+}
+
+.separator {
+    position: absolute;
+    top: 13px;
+    left: 220px;
+
+    width: 35px;
+    height: 2px;
+
+    background-color: #3a3a3a;
+    transform: rotate(90deg);
+    transform-origin: left top;
+
+    z-index: 1005;
+    opacity: 0.7;
+}
+
+.button {
+    transition-duration: 0.4s;
+    position: absolute;
+    top: 11px;
+    left: 233px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 2px solid #04AA6D;
+    background-color: white;
+    color: #04AA6D;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    z-index: 1005;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+    z-index: 1005;
+}
+
+#zimoph{
+    position: absolute;
+    top: 37%;
+    left: 55%;
+    width: 500px;
+    height: auto;
+    padding-right: 0cm;
+    color: #757575 ;
+    z-index: 1001;
+    opacity: 0.8;
+    border: 2px solid #000000;
+}
+
+#zimoamour{
+    position: absolute;
+    top: 64%;
+    left: 30%;
+    width: 650px;
+    height: auto;
+    padding-right: 0cm;
+    color: #757575 ;
+    z-index: 1001;
+    opacity: 0.95;
+    border: 2px solid #000000;
+}

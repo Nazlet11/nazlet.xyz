@@ -19,7 +19,7 @@ a:hover {
     color: #035712;
 }
 
-#main {
+#WIP {
     position: absolute;
     top: 30%;
     left: 75%;
@@ -146,7 +146,7 @@ i {
 }
 
 #zimoph,
-#zimoamour {
+#textewtf {
     position: absolute;
     color: #757575;
     border: 2px solid #000000;
@@ -157,7 +157,7 @@ i {
 }
 
 
-#zimoamour {
+#textewtf {
     top: 64%;
     left: 30%;
     width: 650px;

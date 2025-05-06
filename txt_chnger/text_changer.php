@@ -87,16 +87,6 @@ $txtsortie = scramble_text($txt);
 <div id="urlsite"><a href="https://nazlet.xyz">nazlet.xyz</a></div>
 
 
-<div class="wrapper">
-    <div class="neon-wrapper">
-
-        <span class="txt" >nazlet.xyz</span>
-        <span class="gradient"></span>
-        <span class="dodge"></span>
-    </div>
-</div>
-
-
 <div id="main">WIP</div>
 
 

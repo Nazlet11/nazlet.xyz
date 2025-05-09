@@ -21,9 +21,8 @@ a:hover {
 
 #WIP {
     position: absolute;
-    top: 30%;
-    left: 75%;
-    transform: translate(-50%, -50%);
+    top: 80%;
+    left: 60%;
     font-size: 100px;
     font-weight: 500;
     color: black;
@@ -94,6 +93,27 @@ i {
     z-index: 1004;
 }
 
+#stattotal{
+    position: absolute;
+    top: 15%;
+    left: 67%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: 800 !important;
+    color: white;
+}
+
+.stats{
+    position: relative;
+    top: 25%;
+    left: 110%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-weight: 400 !important;
+    color: white;
+    z-index: 1010;
+}
+
 .separator {
     position: absolute;
     top: 13px;
@@ -145,23 +165,17 @@ i {
     z-index: 1005;
 }
 
-#zimoamour {
+#textewtf {
     position: absolute;
-	top: 50%;
-    left: 30%;
+    top: 57%;
+    left: 4%;
     color: #757575;
     border: 2px solid #000000;
     cursor: help;
     opacity: 0.8;
     z-index: 1001;
     height: auto;
-}
-
-
-#textewtf {
-    top: 64%;
-    left: 30%;
-    width: 650px;
+    width: 500px;
     opacity: 0.95;
 }
 
@@ -198,7 +212,32 @@ p {
     z-index: 1006;
 }
 
+/* Style du bouton rond */
+.clicbouton {
+    position: absolute;
+    top: 12%;
+    left: 7%;
+    display: inline-block;
+    width: 375px; /* Ajustez la largeur selon vos préférences */
+    height: 375px; /* Ajustez la hauteur selon vos préférences */
+    background-color: #007bff; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    border-radius: 50%; /* Bordures arrondies pour créer la forme ronde */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Curseur indiquant qu'il s'agit d'un élément cliquable */
+}
 
+/* Style au survol du bouton */
+.clicbouton:hover {
+    background-color: #0056b3; /* Change la couleur de fond au survol */
+}
+
+/* Animation lorsqu'on clique sur le bouton */
+.clicbouton:active {
+    transform: scale(0.9); /* Réduire légèrement la taille du bouton lorsqu'on clique */
+    transition: transform 0.5s ease;
+}
 
 
 

@@ -1,80 +1,93 @@
 <?php
 session_start();
 $_SESSION["ip"] = $_SERVER['REMOTE_ADDR'];
-echo $_SESSION['ip'];
+$psdo = $_POST['psdo'] ?? '';
+
+////$_SESSION['ip'] = "127.0.0.2";
+////echo $_SESSION['ip'];
+
+// Crée une variable $_SESSION["ip"] ou y'a l'ip de l'utilisateur dedans
 
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-// Affiche les erreurs
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nazlet";
+// Phpstorm faut une liscence pour ça, j'utilisais l'essai gratuit de 30 jours.
+// Dommage c'était pas mal ducoup je viens de switch a visual studio code mais 
+// Ca a l'air vraiment pas mal ? jsp on va voir
+
+// Oh j'ai eu un nouveau clavier, mad60 he vrm pas mal je pense c'est le meilleur clavier que j'ai eu jusque
+// La et il est magnétique en plus, le seul truc que j'aimerai un peu c'est qu'il soit sans fil mais en
+// Vrai peu importe
+
+// 08/05/2025
+
+
+$servername = "sql213.infinityfree.com";
+$username = "if0_38822033";
+$password = "wTh6lejsbgPah";
+$dbname = "if0_38822033_nazlet";
+
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=nazlet", $username, $password);
-    // set the PDO error mode to exception
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // Set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $resultstats = $conn->query("SELECT user_id, nombre_clics FROM clics ORDER BY nombre_clics DESC");
+    $resultstats = $conn->query("SELECT psdo, nombre_clics FROM CLICS ORDER BY nombre_clics DESC");
     while ($row = $resultstats->fetch(PDO::FETCH_ASSOC)) {
-        echo "<div class='stats'>User " . $row['user_id'] . " : " . $row['nombre_clics'] . "</div><br>";
+        echo "<div class='stats'>" . $row['psdo'] . " : " . $row['nombre_clics'] . "</div><br>";
     }
     // Affichage Stat par user
 
     if (isset($_POST['clicbouton'])){
-        $sqlclic = "UPDATE clics SET nombre_clics = nombre_clics + 1 WHERE user_id = 1;";
+        $sqlclic = "UPDATE CLICS SET nombre_clics = nombre_clics + 1 WHERE ip = :ip;";
         $stmtclic = $conn->prepare($sqlclic);
-        $stmtclic->execute();
-        // Incrémentation
+        $stmtclic->execute(['ip' => $_SESSION['ip']]);
+        // Prepared statement pour l'incrémentation du clic counter
 
-        $resultstattotal = $conn->query("SELECT nombre_clics FROM clics WHERE user_id = 1;");
+        $resultstattotal = $conn->query("SELECT SUM(nombre_clics) AS total_clicks FROM CLICS;");
         $row = $resultstattotal->fetch(PDO::FETCH_ASSOC);
-        echo "<div id =stattotal>Total number of clicks : " . $row['nombre_clics'] . "</div>>";
-        // Affichage Stat total
+        echo "<div id=stattotal>Total number of clicks : " . $row['total_clicks'] . "</div>";
+        // Affichage Stats total(WIP)
 
 
-
+/*
         $stmtip = $conn->prepare("SELECT * FROM CLICS WHERE ip = :ip");
         $getip = $stmtip->execute(['ip' => $_SESSION['ip']]);
+*/
 
 
         if ($stmtclic->rowCount() > 0) {
-            echo "IP found in database.<br> Hello User";
+            echo "<div id=ipoupas>IP found in database.<br> Hello</div>";
         } else {
-            $sqlipcreate = "INSERT INTO CLICS (nombre_clics, ip) VALUES (0, '?'); ";
+            $sqlipcreate = "INSERT INTO CLICS (nombre_clics, ip, psdo) VALUES (0, :ip , null); ";
             $stmtipcreate = $conn->prepare($sqlipcreate);
-            $stmtip->execute(['ip' => $_SESSION['ip']]);
+            $stmtipcreate->execute(['ip' => $_SESSION['ip']]);
         }
+        // Détecte si c'est un utilisateur qu'est déjà passé sur ce site
+        // Si non, stock ses info dans sa base de données
 
 
-        $resultstattotal = $conn->query("SELECT nombre_clics FROM clics WHERE user_id = 1;");
-        $row = $resultstattotal->fetch(PDO::FETCH_ASSOC);
-        echo "<div id =stattotal>Total number of clicks : " . $row['nombre_clics'] . "</div>>";
-        // Affichage pseudo
+    }
+    
+if (isset($_POST['pseudobutton']) && !empty($_POST['psdo'])) {
+        $psdo = htmlspecialchars(trim($_POST['psdo']));
 
-
-        if ($stmtclic->rowCount() > 0) {
-            echo "IP found in database.<br> Hello User";
-        } else {
-            $sqlipcreate = "INSERT INTO CLICS (nombre_clics, ip) VALUES (0, '?'); ";
-            $stmtipcreate = $conn->prepare($sqlipcreate);
-            $stmtip->execute(['ip' => $_SESSION['ip']]);
-        }
+        $sqlclic = "UPDATE CLICS SET psdo = :psdo WHERE ip = :ip;";
+        $stmtclic = $conn->prepare($sqlclic);
+        $stmtclic->execute([
+            'psdo' => $psdo, 
+            'ip' => $_SESSION['ip']]);
+        // Actualise le pseudo de qui appartient a l'ip avec la valeur dans $psdo
     }
 
-    //$conn->exec($sql);
-    echo "<br><br><br><br><br>Connected successfully";
+    ///echo "<br><br><br><br><br>Connected successfully";
+    // Pour voir si la connection a la bdd marche bien
 
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 
-//
-//
-//
+
 
 ?>
 
@@ -86,7 +99,7 @@ try {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/andy-pro" rel="stylesheet">
 	<link rel="icon" type="image/x-icon" href="../images/icon.ico">
-<link rel="stylesheet" href="clics_changer.css">
+<link rel="stylesheet" href="clics_style.css">
 </head>
 <body>
 
@@ -100,7 +113,15 @@ try {
 
 
 <form method="post" action="clics.php">
-    <center><button id="clicbouton" name="clicbouton" class="clicbouton">Bouton</button></center>
+    <center><button id="clicbouton" name="clicbouton" class="clicbouton">*clic*</button></center>
+</form>
+
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <i>Enter your name here</i>
+              <h2>                  Name : </h2>
+    <textarea name="psdo" rows="1" cols="15" class="pseudoarea"><?php echo htmlspecialchars($psdo ?? ''); ?></textarea>
+    <input type="submit" name="pseudobutton" value="⟲" class="pseudobutton">
 </form>
 
 
@@ -122,16 +143,13 @@ try {
 
 
 
-<img id="textewtf" src="../images/textwtf.png" alt="discussion_n'a_aucun_sens" />
+<!-- <img id="textewtf" src="../images/textwtf.png" alt="discussion_n'a_aucun_sens" /> -->
 
 <div id="WIP">WIP</div>
 
 
 <hr class="separator">
 
-<!-- particles.js container
-<button class="button"><a href="">Texte</a></button>
--->
 
 
 

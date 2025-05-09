@@ -229,3 +229,27 @@ a:hover {
     color: white;
     z-index: 1005;
 }
+
+.button2 {
+    transition-duration: 0.4s;
+    position: absolute;
+    top: 11px;
+    left: 317px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 2px solid #04AA6D;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #04AA6D;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    z-index: 1005;
+    cursor: pointer;
+}
+
+.button2:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+    z-index: 1005;
+}

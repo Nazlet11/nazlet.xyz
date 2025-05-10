@@ -26,6 +26,10 @@ $username = "if0_38822033";
 $password = "wTh6lejsbgPah";
 $dbname = "if0_38822033_nazlet";
 
+///$servername = "localhost";
+///$username = "root";
+///$password = "";
+///$dbname = "nazlet";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -102,12 +106,12 @@ if (isset($_POST['pseudobutton']) && !empty($_POST['psdo'])) {
 <link rel="stylesheet" href="clics_style.css">
 </head>
 <body>
-
-
+<div id="barre">zazlet </div>
+<div id="flch">‣</div>
+<div id="urlsite"><a href="https://nazlet.xyz">nazlet.xyz</a></div>
 <div id="emoji">
     <img src="../images/emojifleurfanee.png" alt="crying_emoji" height="20" width="20">
 </div>
-
 
 
 
@@ -118,18 +122,13 @@ if (isset($_POST['pseudobutton']) && !empty($_POST['psdo'])) {
 
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <i>Enter your name here</i>
+    <div id="entername"><i>Enter your name here</i></div>
               <h2>                  Name : </h2>
     <textarea name="psdo" rows="1" cols="15" class="pseudoarea"><?php echo htmlspecialchars($psdo ?? ''); ?></textarea>
     <input type="submit" name="pseudobutton" value="⟲" class="pseudobutton">
 </form>
 
 
-
-
-<div id="barre">zazlet </div>
-<div id="flch">‣</div>
-<div id="urlsite"><a href="https://nazlet.xyz">nazlet.xyz</a></div>
 
 
 

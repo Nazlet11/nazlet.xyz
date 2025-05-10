@@ -7,6 +7,11 @@
 
 body {
     background-color: #1b1b1f;
+
+    /* enlever scroll horizontal, vertial et cache la scroll bar */
+    overflow-x
+    overflow-y
+    overflow: hidden
 }
 
 a {
@@ -44,13 +49,6 @@ a:hover {
     color: #757575;
     z-index: 1001;
     opacity: 0.8;
-}
-
-i {
-    position: absolute;
-    top: 100px;
-    left: 2.3cm;
-    opacity: 50%;
 }
 
 #barre {
@@ -100,6 +98,7 @@ i {
     transform: translate(-50%, -50%);
     font-size: 50px;
     font-weight: 800 !important;
+    font-family: "Andy";
     color: white;
 }
 
@@ -165,33 +164,7 @@ i {
     z-index: 1005;
 }
 
-#textewtf {
-    position: absolute;
-    top: 57%;
-    left: 4%;
-    color: #757575;
-    border: 2px solid #000000;
-    cursor: help;
-    opacity: 0.8;
-    z-index: 1001;
-    height: auto;
-    width: 500px;
-    opacity: 0.95;
-}
 
-.txtarea {
-    top : 50px;
-    position: relative;
-    border-radius: 4px;
-    background-color: white;
-    color: #393c39;
-    text-align: center;
-    display: inline-block;
-    font-family: "Andy";
-    z-index: 1005;
-    position: relative;
-
-}
 
 @font-face {
     font-family: 'Andy';
@@ -200,7 +173,9 @@ i {
 
 h2 {
     position: absolute;
-    left: 100px;
+    top : 73.5%;
+    left: 4cm;
+    color: white;
     padding-top: 0.19cm;
 }
 
@@ -212,14 +187,29 @@ p {
     z-index: 1006;
 }
 
+#ipoupas {
+    position: absolute;
+    padding-top: 20cm;
+    padding-right: 1cm;
+    opacity: 50%;
+}
+
+#entername {
+    position: absolute;
+    top: 70%;
+    color: white;
+    padding-left: 6cm;
+    opacity: 50%;
+}
+
 /* Style du bouton rond */
 .clicbouton {
     position: absolute;
     top: 12%;
     left: 7%;
     display: inline-block;
-    width: 375px; /* Ajustez la largeur selon vos préférences */
-    height: 375px; /* Ajustez la hauteur selon vos préférences */
+    width: 500px; /* Ajustez la largeur selon vos préférences */
+    height: 500px; /* Ajustez la hauteur selon vos préférences */
     background-color: #007bff; /* Couleur de fond */
     color: white; /* Couleur du texte */
     font-size: 16px; /* Taille de la police */
@@ -241,4 +231,44 @@ p {
 
 
 
+.pseudoarea {
+    position: absolute;
+    top : 75%;
+    left: 7cm;
 
+    /* Espace entre bordure et texte  */
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+
+    border-radius: 5px;
+    background-color: white;
+    color: #393c39;
+    text-align: center;
+    display: inline-block;
+    font-family: "Andy";
+    z-index: 1005;
+}
+
+
+
+.pseudobutton {
+    position: absolute;
+    top : 75%;
+    left: 10cm;
+
+    /* Espace entre bordure et texte */
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+
+    border-radius: 4px;
+    background-color: white;
+    color: #393c39;
+    text-align: center;
+    display: inline-block;
+    font-family: "Andy";
+    z-index: 1005;
+}

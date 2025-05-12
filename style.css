@@ -35,7 +35,7 @@ a:hover {
     color: #035712;  /*#00ffcc*/
     text-decoration: none;
 }
-#WIP{
+#main{
     position: absolute;
     top: 45%;
     left: 50%;
@@ -61,8 +61,8 @@ a:hover {
 
 #ytosu{
 
-    top: 57.5%;
-    left: 59%;
+    top: 58.5%;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-size: 17px;
     font-weight: 100 ;

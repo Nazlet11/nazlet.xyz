@@ -1,9 +1,10 @@
 <?php
+
 session_start();
 $_SESSION["ip"] = $_SERVER['REMOTE_ADDR'];
 $psdo = $_POST['psdo'] ?? '';
 
-////$_SESSION['ip'] = "127.0.0.2";
+////$_SESSION['ip'] = "127.0.0.15";
 ////echo $_SESSION['ip'];
 
 // Crée une variable $_SESSION["ip"] ou y'a l'ip de l'utilisateur dedans
@@ -21,18 +22,25 @@ $psdo = $_POST['psdo'] ?? '';
 // 08/05/2025
 
 
+
+
+/*
 $servername = "sql213.infinityfree.com";
 $username = "if0_38822033";
 $password = "wTh6lejsbgPah";
 $dbname = "if0_38822033_nazlet";
 
-///$servername = "localhost";
-///$username = "root";
-///$password = "";
-///$dbname = "nazlet";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "nazlet";
+*/
+
+if (isset($_POST['clicbtnjs'])){
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=sql213.infinityfree.com;dbname=if0_38822033_nazlet", "if0_38822033", "wTh6lejsbgPah");
+    ////$conn = new PDO("mysql:host=localhost;dbname=nazlet", "root", "");
     // Set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -42,55 +50,44 @@ try {
     }
     // Affichage Stat par user
 
-    if (isset($_POST['clicbouton'])){
-        $sqlclic = "UPDATE CLICS SET nombre_clics = nombre_clics + 1 WHERE ip = :ip;";
-        $stmtclic = $conn->prepare($sqlclic);
-        $stmtclic->execute(['ip' => $_SESSION['ip']]);
-        // Prepared statement pour l'incrémentation du clic counter
-
-        $resultstattotal = $conn->query("SELECT SUM(nombre_clics) AS total_clicks FROM CLICS;");
-        $row = $resultstattotal->fetch(PDO::FETCH_ASSOC);
-        echo "<div id=stattotal>Total number of clicks : " . $row['total_clicks'] . "</div>";
-        // Affichage Stats total(WIP)
+    $sqlclic = "UPDATE CLICS SET nombre_clics = nombre_clics + 1 WHERE ip = :ip;";
+    $stmtclic = $conn->prepare($sqlclic);
+    $stmtclic->execute(['ip' => $_SESSION['ip']]);
+    // Prepared statement pour l'incrémentation du clic counter
 
 
-/*
-        $stmtip = $conn->prepare("SELECT * FROM CLICS WHERE ip = :ip");
-        $getip = $stmtip->execute(['ip' => $_SESSION['ip']]);
-*/
+    if ($stmtclic->rowCount() > 0) {
+        echo "<div id=ipoupas>IP found in database.<br> Hello</div>";
+    } else {
+        $sqlipcreate = "INSERT INTO CLICS (nombre_clics, ip, psdo) VALUES (0, :ip , null); ";
+        $stmtipcreate = $conn->prepare($sqlipcreate);
+        $stmtipcreate->execute(['ip' => $_SESSION['ip']]);
+        // Met les données de bases
 
-
-        if ($stmtclic->rowCount() > 0) {
-            echo "<div id=ipoupas>IP found in database.<br> Hello</div>";
-        } else {
-            $sqlipcreate = "INSERT INTO CLICS (nombre_clics, ip, psdo) VALUES (0, :ip , null); ";
-            $stmtipcreate = $conn->prepare($sqlipcreate);
-            $stmtipcreate->execute(['ip' => $_SESSION['ip']]);
+        $stmtpsdo = $conn->prepare("SELECT psdo FROM CLICS WHERE ip = :ip");
+        $stmtpsdo->execute(['ip' => $_SESSION['ip']]);
+        $rowpsdo = $stmtpsdo->fetch(PDO::FETCH_ASSOC);
+        if (empty($rowpsdo['psdo'])) {
+            header("Location: rename.php");
+            exit;
         }
-        // Détecte si c'est un utilisateur qu'est déjà passé sur ce site
-        // Si non, stock ses info dans sa base de données
-
-
+        // Pseudo vide ou pas
     }
-    
-if (isset($_POST['pseudobutton']) && !empty($_POST['psdo'])) {
-        $psdo = htmlspecialchars(trim($_POST['psdo']));
+    // Détecte si c'est un utilisateur qu'est déjà passé sur ce site
+    // Si non, stock ses info dans sa base de données
 
-        $sqlclic = "UPDATE CLICS SET psdo = :psdo WHERE ip = :ip;";
-        $stmtclic = $conn->prepare($sqlclic);
-        $stmtclic->execute([
-            'psdo' => $psdo, 
-            'ip' => $_SESSION['ip']]);
-        // Actualise le pseudo de qui appartient a l'ip avec la valeur dans $psdo
-    }
+    $resultstattotal = $conn->query("SELECT SUM(nombre_clics) AS total_clicks FROM CLICS;");
+    $row = $resultstattotal->fetch(PDO::FETCH_ASSOC);
+    echo "<div id=stattotal>Total number of clicks : " . $row['total_clicks'] . "</div>";
+    // Affichage Stats total
 
-    ///echo "<br><br><br><br><br>Connected successfully";
+    ////echo "<br><br><br><br><br>Connected successfully";
     // Pour voir si la connection a la bdd marche bien
 
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-
+}
 
 
 ?>
@@ -112,24 +109,50 @@ if (isset($_POST['pseudobutton']) && !empty($_POST['psdo'])) {
 <div id="emoji">
     <img src="../images/emojifleurfanee.png" alt="crying_emoji" height="20" width="20">
 </div>
+<a href="../index.html" class="buttonback">Back ⤶</a>
 
 
 
 
-<form method="post" action="clics.php">
-    <center><button id="clicbouton" name="clicbouton" class="clicbouton">*clic*</button></center>
+
+
+
+
+
+
+
+
+
+<script>
+    document.getElementById('click-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        fetch('clics.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'clicbtnjs=true' 
+        })
+        .then(response => response.text())
+    .then(data => {
+        document.getElementById('stats-container').innerHTML = data;
+    })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+<!-- Je comprend rien au Javascript honnêtement -->
+
+
+<div id= clicbtnjs>
+<form id="click-form" method="POST" action="clics.php">
+    <center><button id="clicbouton" type="submit" name="clicbtnjs" class="button">click here</button></center>
 </form>
+</div>
 
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <div id="entername"><i>Enter your name here</i></div>
-              <h2>                  Name : </h2>
-    <textarea name="psdo" rows="1" cols="15" class="pseudoarea"><?php echo htmlspecialchars($psdo ?? ''); ?></textarea>
-    <input type="submit" name="pseudobutton" value="⟲" class="pseudobutton">
-</form>
-
-
-
+<div id="entername"><i>Click here to change your username</i></div>
+<a href="rename.php" class="buttonrename">Rename ⥃</a>
 
 
 
@@ -144,7 +167,7 @@ if (isset($_POST['pseudobutton']) && !empty($_POST['psdo'])) {
 
 <!-- <img id="textewtf" src="../images/textwtf.png" alt="discussion_n'a_aucun_sens" /> -->
 
-<div id="WIP">WIP</div>
+<!--<div id="WIP">WIP</div> -->
 
 
 <hr class="separator">

@@ -17,6 +17,16 @@ body {
     overflow: hidden;
 }
 
+#black-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* noir semi-transparent */
+    z-index: 8999;
+}
+
 a {
     color: white;
     text-decoration: none;
@@ -27,15 +37,6 @@ a:hover {
     color: #035712;
 }
 
-#WIP {
-    position: absolute;
-    top: 80%;
-    left: 60%;
-    font-size: 100px;
-    font-weight: 500;
-    color: black;
-    z-index: 1000;
-}
 
 #text {
     color: #ffffff;
@@ -50,7 +51,7 @@ a:hover {
     transform: translate(-50%, -50%) rotate(14deg);
     font-size: 2px;
     color: #757575;
-    z-index: 1001;
+    z-index: 9001;
     opacity: 0.8;
 }
 
@@ -66,7 +67,7 @@ a:hover {
     line-height: 60px;
     padding-left: 0.7cm;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    z-index: 9001;
 }
 
 #flch,
@@ -78,49 +79,43 @@ a:hover {
     text-align: start;
     padding-left: 0.7cm;
     color: white;
+    z-index: 9001;
 }
 
 #flch {
     top: 2px;
     left: 73px;
     font-size: 28px;
-    z-index: 1002;
+    z-index: 9001;
 }
 
 #urlsite {
     top: 1px;
     left: 88px;
     font-size: 19px;
-    z-index: 1004;
+    z-index: 9001;
 }
 
 #stattotal{
     position: absolute;
-    top: 19%;
-    left: 70%;
+    top: 15%;
+    left: 67%;
     transform: translate(-50%, -50%);
     font-size: 50px;
     font-weight: 800 !important;
     color: white;
-
-    border: 2px solid #dc8718; 
-    padding: 7px;            
-    display: inline-block;    
-    border-radius: 8px;       
-
 }
 
-.stats {
+.stats{
     position: relative;
-    top: 28%;
-    left: 70%;
+    top: 25%;
+    left: 110%;
     transform: translate(-50%, -50%);
     font-size: 25px;
     font-weight: 400 !important;
-    color: white;
     font-family: "Andy";
+    color: white;
     z-index: 1010;
-    text-align: center;
 }
 
 .separator {
@@ -132,33 +127,49 @@ a:hover {
     background-color: #3a3a3a;
     transform: rotate(90deg);
     transform-origin: left top;
-    z-index: 1005;
+    z-index: 9001;
     opacity: 0.7;
 }
-*
-.buttonrename {
+
+.button,
+.submitbutton {
     position: absolute;
-    top: 76%;
-    left: 15%;
     text-align: center;
     display: inline-block;
-    padding: 6px 10px;
     border-radius: 10px;
-    border: 2px solid #dc8718;
-    background-color: white;
-    color: #dc8718;
+    transition-duration: 0.4s;
+    cursor: pointer;
     font-size: 20px;
     text-decoration: none;
-    cursor: pointer;
-    transition-duration: 0.4s;
+}
+
+.button {
+    top: 11px;
+    left: 233px;
+    padding: 6px 10px;
+    border: 2px solid #04AA6D;
+    background-color: white;
+    color: #04AA6D;
     z-index: 1005;
 }
 
-.buttonrename:hover,
+.button:hover,
 .submitbutton:hover {
-    background-color: #dc8718;
+    background-color: #04AA6D;
     color: white;
 }
+
+.submitbutton {
+    position: relative;
+    padding: 2px 5px;
+    border: 1px solid #393c39;
+    background-color: white;
+    color: #393c39;
+    border-radius: 4px;
+    z-index: 1005;
+}
+
+
 
 @font-face {
     font-family: 'Andy';
@@ -190,113 +201,45 @@ p {
 
 #entername {
     position: absolute;
-    top: 71%;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: 800 !important;
     color: white;
-    padding-left: 6cm;
-    opacity: 50%;
+    white-space: nowrap;
+    z-index: 9999;
 }
 
 
-.pseudoarea {
+
+.pseudo-container {
     position: absolute;
-    top : 75%;
-    left: 7cm;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 20px; /* spacing between textarea and button */
+    align-items: center;
+    z-index: 9000;
+}
 
-    /* Espace entre bordure et texte  */
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-
+.pseudoarea {
+    padding: 5px;
     border-radius: 5px;
     background-color: white;
     color: #393c39;
     text-align: center;
-    display: inline-block;
     font-family: "Andy";
-    z-index: 1005;
+    font-size: 50px;
 }
 
-
-
 .pseudobutton {
-    position: absolute;
-    top : 75%;
-    left: 10cm;
-
-    /* Espace entre bordure et texte */
-    padding-top: 4px;
-    padding-right: 4px;
-    padding-bottom: 4px;
-    padding-left: 4px;
-
+    padding: 6px;
     border-radius: 4px;
     background-color: white;
     color: #393c39;
     text-align: center;
-    display: inline-block;
     font-family: "Andy";
-    z-index: 1005;
-}
-
-
-button {
-   position: absolute;
-    top: 12%;
-    left: 7%;
-    display: inline-block;
-    width: 675px; /* Ajustez la largeur selon vos préférences */
-    height: 500px; /* Ajustez la hauteur selon vos préférences */
-
-  padding: 17px 40px;
-  border-radius: 50px;
-  cursor: pointer;
-  border: 0;
-  background-color: white;
-  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-family: "Andy";
-  transition: all 0.5s ease;
-}
-
-button:hover {
-  letter-spacing: 1px;
-  background-color: #dc8718;
-  color: hsl(0, 0%, 100%);
-  box-shadow: #dc8718 0px 7px 29px 0px;
-}
-
-button:active {
-  letter-spacing: 1px;
-  background-color: #dc8718;
-  color: hsl(0, 0%, 100%);
-  box-shadow: #dc8718 0px 0px 0px 0px;
-  transform: translateY(10px);
-  transition: 100ms;
-}
-
-.buttonback {
-    transition-duration: 0.4s;
-    position: absolute;
-    top: 11px;
-    left: 233px;
-    padding: 6px 10px;
-    border-radius: 10px;
-    border: 2px solid #dc8718;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #dc8718;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    z-index: 1005;
-    cursor: pointer;
-}
-
-.buttonback:hover {
-    background-color: #dc8718; /* Green */
-    color: white;
-    z-index: 1005;
+    font-size: 38px;
 }

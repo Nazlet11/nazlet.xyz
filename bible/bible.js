@@ -1,12 +1,15 @@
 let debug = "testblblfcdrg";
 
-fetch('http://nazlet.xyz/bible/Bible.txt')
+
+let txtCompare = "sac";
+fetch('http://nazlet.xyz/bbl.txt?i=1')
   .then(response => response.text())
   .then((data) => {
-    console.log(data)
+    txtCompare = data;
   })
+  .catch(err => console.error(err));
 
-let txtCompare = "textea";
+
 let entryUnparsed = [];
 let entryParsed = [];
 let wordsFound = [];
@@ -21,8 +24,14 @@ function bouton() {
 
   let txtarea = document.querySelector('.txtarea').value;
   entryParsed = txtarea.match(/\b[\w']+\b/g);
-  document.getElementById("debugtextshow").textContent=entryParsed;
+    document.getElementById("debugtextshow").textContent=txtCompare;
+  //document.getElementById("debugtextshow").textContent=entryParsed;
   
+    if (!txtCompare) {
+    alert("Le fichier n'est pas encore chargé !");
+    return;
+  }
+
   for (let word of entryParsed) {
     let regex = new RegExp(word, "g");
     var trouvé = txtCompare.match(regex);

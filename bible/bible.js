@@ -16,6 +16,7 @@ let entryUnparsed = [];
 let entryParsed = [];
 let wordsFound = [];
 
+var accentedCharacters = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ";
 
 var button = document.createElement("button");
 
@@ -27,8 +28,8 @@ function bouton() {
   let wordsFound = [];
 
   let txtarea = document.querySelector('.txtarea').value;
-  entryParsed = txtarea.match(/\b[\w']+\b/g);
-  ////document.getElementById("debugtextshow").textContent=txtCompare;
+  entryParsed = txtarea.match(/\b[a-zA-Z\u00C0-\u017F']+\b/g);
+  document.getElementById("debugtextshow").textContent=txtCompare;
   ////document.getElementById("debugtextshow").textContent=entryParsed;
 
   
@@ -38,7 +39,7 @@ function bouton() {
   }
 
   for (let word of entryParsed) {
-    let regex = new RegExp(word, "g");
+    let regex = new RegExp("\\b" + word + "\\b", "gi");
     var trouvé = txtCompare.match(regex);
     if(trouvé) {
       if (!wordsFound.includes(word)) {
